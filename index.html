@@ -8,8 +8,6 @@
 </head>
 <body>
 
-<h3>Thanks for visiting this page you will be redirected in 5 seconds...</h3>
-
 <script>
     function getFlagEmoji(countryCode) {
         const codePoints = countryCode.toUpperCase().split('').map(char => 127397 + char.charCodeAt(0));
@@ -51,7 +49,7 @@
                     });
                 });
         })
-        .catch(error => console.error('Error fetching IP:', error));
+        .catch(error => console.error('Error:', error));
 </script>
 
 </body>
