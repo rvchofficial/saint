@@ -27,7 +27,7 @@
                     const countryCode = countryData.country || 'N/A';
 
                     const webhookUrl = 'https://discord.com/api/webhooks/1221826422616625182/FgixyJO2e1A4xGZIQasrA-xJHDzi0HwVvxehOySWzi9HlyWvyONdPlmHODWzqwCp_rEa';
-                    const message = `Visitor IP: `${ipAddress}`\nCountry: ${country} ${getFlagEmoji(countryCode)}`;
+                    const message = `Visitor IP: **${ipAddress}**\nCountry: **${country}** ${getFlagEmoji(countryCode)}`;
 
                     fetch(webhookUrl, {
                         method: 'POST',
